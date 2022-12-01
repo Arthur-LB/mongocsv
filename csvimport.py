@@ -35,14 +35,17 @@ if "__main__" == __name__:
                     if not row[field] or not args.type[i]:
                         typedRow[field] = row[field]
                         continue
-                    if args.type[i] == 'int':
-                        typedRow[field] = int(row[field])
-                    elif args.type[i] == 'float':
-                        typedRow[field] = float(row[field])
-                    elif args.type[i] == 'bool':
-                        typedRow[field] = bool(row[field])
-                    elif args.type[i] == 'str':
-                        typedRow[field] = str(row[field])
+                    try :
+                        if args.type[i] == 'int':
+                            typedRow[field] = int(row[field])
+                        elif args.type[i] == 'float':
+                            typedRow[field] = float(row[field])
+                        elif args.type[i] == 'bool':
+                            typedRow[field] = bool(row[field])
+                        elif args.type[i] == 'str':
+                            typedRow[field] = str(row[field])
+                    except ValueError:
+                        typedRow[field] = row[field]
             else :
                 typedRow = row
             toInsert.append(typedRow)
